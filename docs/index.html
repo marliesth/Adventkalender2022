@@ -1,0 +1,72 @@
+<html lang="de">
+<head>
+    <title>Advent</title>
+    <meta charset="utf-8">
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+    img {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .clickable img {
+        cursor: pointer;
+    }
+</style>
+<body>
+
+<h1>Adventkalender</h1>
+
+<div id="day1">
+    <h2>Tag 1</h2>
+    <img src="day1_front.jpg" alt=""/>
+</div>
+
+<div id="day2">
+    <h2>Tag 2</h2>
+    <img src="day1_front.jpg" alt=""/>
+</div>
+
+<div id="day3">
+    <h2>Tag 3</h2>
+    <img src="day1_front.jpg" alt=""/>
+</div>
+
+<div id="day4">
+    <h2>Tag 4</h2>
+    <img src="day1_front.jpg" alt=""/>
+</div>
+
+
+
+<script>
+
+    let date = new Date()
+    // for testing:
+    date = new Date(2022, 11, 2) // December 2nd
+    //date = new Date(2022, 11, 24) // December 24th
+    let isDecember = date.getMonth() === 11
+
+    for (let day = 0; day <= 24; day++) {
+        let dayElement = document.getElementById("day" + day)
+        if (!dayElement) continue;
+
+        if (isDecember && date.getDate() >= day) {
+            // swap images
+            dayElement.classList.add('clickable')
+            dayElement.addEventListener("click", event => {
+                let image = dayElement.getElementsByTagName("img")[0]
+                if (image.src.indexOf("front") >= 0) {
+                    image.src = image.src.replace('front', 'back')
+                } else {
+                    image.src = image.src.replace('back', 'front')
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>
