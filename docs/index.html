@@ -56,21 +56,29 @@
     //date = new Date(2022, 11, 24) // December 24th
     let isDecember = date.getMonth() === 11
 
+    function swapImage(dayElement) {
+        let image = dayElement.getElementsByTagName("img")[0]
+        if (image.src.indexOf("front") >= 0) {
+            image.src = image.src.replace('front', 'back')
+            localStorage.setItem(dayElement.id, "1")
+        } else {
+            image.src = image.src.replace('back', 'front')
+            localStorage.removeItem(dayElement.id)
+        }
+    }
+
     for (let day = 0; day <= 24; day++) {
-        let dayElement = document.getElementById("day" + day)
+        let dayId = "day" + day
+        let dayElement = document.getElementById(dayId)
         if (!dayElement) continue;
 
         if (isDecember && date.getDate() >= day) {
             // swap images
             dayElement.classList.add('clickable')
-            dayElement.addEventListener("click", event => {
-                let image = dayElement.getElementsByTagName("img")[0]
-                if (image.src.indexOf("front") >= 0) {
-                    image.src = image.src.replace('front', 'back')
-                } else {
-                    image.src = image.src.replace('back', 'front')
-                }
-            })
+            dayElement.addEventListener("click", () => swapImage(dayElement))
+            if (localStorage.getItem(dayId)) {
+                swapImage(dayElement)
+            }
         }
     }
 </script>
