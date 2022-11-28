@@ -20,7 +20,11 @@
 <body>
 
 <h1>Adventkalender</h1>
-
+<p>
+   
+</p>
+    
+    
 <div id="day1">
     <h2>1. Dezember: Teapot Walking</h2>
     <img src="Teapot_Walking2_front.jpg" alt=""/>
@@ -147,9 +151,10 @@
 <script>
 
     let date = new Date()
+
     // for testing:
-    date = new Date(2022, 11, 24) // December 2nd
-    //date = new Date(2022, 11, 24) // December 24th
+    //date = new Date(2022, 11, 24) // December 2nd (= TESTING)
+
     let isDecember = date.getMonth() === 11
 
     function swapImage(dayElement) {
