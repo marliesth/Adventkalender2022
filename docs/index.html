@@ -220,6 +220,7 @@
     // for testing:
     //date = new Date(2022, 11, 24) // December 2nd (= TESTING)
 
+    let showAll = true;
     let isDecember = date.getMonth() === 11
 
     function swapImage(dayElement) {
@@ -238,7 +239,7 @@
         let dayElement = document.getElementById(dayId)
         if (!dayElement) continue;
 
-        if (isDecember && date.getDate() >= day) {
+        if (showAll || (isDecember && date.getDate() >= day)) {
             // swap images
             dayElement.classList.add('clickable')
             dayElement.addEventListener("click", () => swapImage(dayElement))
